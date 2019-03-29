@@ -1,22 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.sensoro.bootcompleted" >
+    package="com.sensoro.bootcompleted">
 
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"></uses-permission>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_sensoro"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
+        <activity android:name=".DisplayImageActivity"
+                android:parentActivityName=".MainActivity">
+                <!-- The meta-data tag is required if you support API level 15 and lower -->
+                <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".MainActivity" />
+        </activity>
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,15 +31,14 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".MyService"/>
+        <service android:name=".MyService" />
+        <service android:name="com.sensoro.beacon.kit.BeaconService" />
+        <service android:name="com.sensoro.beacon.kit.IntentProcessorService" />
 
-      
-        <service android:name="com.sensoro.beacon.kit.BeaconService"/>
-        <service android:name="com.sensoro.beacon.kit.IntentProcessorService"/>
-
-        <receiver android:name="com.sensoro.bootcompleted.BootCompletedBroadcastReceiver">
+        <receiver android:name=".BootCompletedBroadcastReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+
                 <category android:name="android.intent.category.HOME" />
             </intent-filter>
         </receiver>

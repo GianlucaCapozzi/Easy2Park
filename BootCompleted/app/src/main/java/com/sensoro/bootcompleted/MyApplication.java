@@ -2,7 +2,9 @@ package com.sensoro.bootcompleted;
 
 import android.app.Application;
 import android.content.Intent;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.widget.ImageView;
 
 import com.sensoro.beacon.kit.Beacon;
 import com.sensoro.beacon.kit.BeaconManagerListener;
@@ -66,12 +68,35 @@ public class MyApplication extends Application implements BeaconManagerListener{
         /**
          * Check whether SDK started in logs.
          */
-        Log.v("BLUE","It's in " + beacon.getSerialNumber());
+        Log.v("BLUE-IN","IN " + beacon.getSerialNumber());
+        //start image display activity
+        //MainActivity.displayImage();
+            Boolean RECOGNIZED=true;
+            // first parameter is the context, second is the class of the activity to launch
+            Intent i = new Intent(this, DisplayImageActivity.class);
+            // put "extras" into the bundle for access in the second activity
+            if(beacon.getSerialNumber().equals("0117C59B4EC7") ){
+                i.putExtra("map_id", "general_map");
+            }
+            else if(beacon.getSerialNumber().equals("0117C582CAD7")){
+                i.putExtra("map_id", "area_one_map");
+            }
+            else if(beacon.getSerialNumber().equals("0117C5578442")){
+                i.putExtra("map_id", "area_two_map");
+            }
+            else{
+                RECOGNIZED=false;
+            }
+            // brings up the second activity
+            if(RECOGNIZED)startActivity(i);
+
+
+
     }
 
     @Override
     public void onGoneBeacon(Beacon beacon) {
-        Log.v("BLUE","Gone out "+ beacon.getSerialNumber());
+        Log.v("BLUE-OUT","OUT"+ beacon.getSerialNumber());
 
     }
 
@@ -80,7 +105,7 @@ public class MyApplication extends Application implements BeaconManagerListener{
 
         for(Beacon b: arrayList) {
 
-            Log.v("BLUE", "UPDATE " + b.getSerialNumber() + "----"+ b);
+            Log.v("BLUE-UPDATE", "UPDATE " + b.getSerialNumber() + "----"+ b);
         }
     }
 }
