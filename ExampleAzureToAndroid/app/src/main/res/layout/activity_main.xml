@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/btnStop"
+        android:layout_width="125dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="59dp"
+        android:layout_marginRight="59dp"
+        android:layout_marginBottom="40dp"
+        android:onClick="btnStopOnClick"
+        android:text="@string/stop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/btnStart"
+        android:layout_width="125dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginBottom="40dp"
+        android:onClick="btnStartOnClick"
+        android:text="@string/start"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/txtMsgsSent"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Messages sent:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtReceiptsConfirmed"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:text="Receipts confirmed:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtMsgsSent" />
+
+    <TextView
+        android:id="@+id/txtSendFailures"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:text="Send Failure:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtReceiptsConfirmed" />
+
+    <TextView
+        android:id="@+id/txtMsgsReceived"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:text="Messages received:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtSendFailures" />
+
+    <TextView
+        android:id="@+id/txtLastTemp"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:text="Last temperature read:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtMsgsReceived" />
+
+    <TextView
+        android:id="@+id/txtLastMsgSentVal"
+        android:layout_width="316dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:autoSizeMaxTextSize="14sp"
+        android:autoSizeMinTextSize="12sp"
+        android:autoSizeStepGranularity="2sp"
+        android:autoSizeTextType="uniform"
+        android:gravity="center_vertical"
+        android:text="{none}"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@android:color/holo_blue_dark"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtLastMsgSent" />
+
+    <TextView
+        android:id="@+id/txtLastMsgReceived"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:text="Last Message received:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtLastMsgSentVal" />
+
+    <TextView
+        android:id="@+id/txtLastMsgReceivedVal"
+        android:layout_width="316dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:gravity="center_vertical"
+        android:text="{none}"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@android:color/holo_blue_dark"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtLastMsgReceived"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="12sp"
+        android:autoSizeMaxTextSize="14sp"
+        android:autoSizeStepGranularity="2sp" />
+
+    <TextView
+        android:id="@+id/txtMsgsSentVal"
+        android:layout_width="60dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
+        android:text="0"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtReceiptsConfirmedVal"
+        android:layout_width="60dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="182dp"
+        android:layout_marginLeft="182dp"
+        android:text="0"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintStart_toEndOf="@+id/txtReceiptsConfirmed"
+        app:layout_constraintTop_toBottomOf="@+id/txtMsgsSentVal" />
+
+    <TextView
+        android:id="@+id/txtSendFailuresVal"
+        android:layout_width="60dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="226dp"
+        android:layout_marginLeft="226dp"
+        android:text="0"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintStart_toEndOf="@+id/txtSendFailures"
+        app:layout_constraintTop_toBottomOf="@+id/txtReceiptsConfirmedVal" />
+
+    <TextView
+        android:id="@+id/txtMsgsReceivedVal"
+        android:layout_width="60dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="182dp"
+        android:layout_marginLeft="182dp"
+        android:text="0"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintStart_toEndOf="@+id/txtMsgsReceived"
+        app:layout_constraintTop_toBottomOf="@+id/txtSendFailuresVal" />
+
+    <TextView
+        android:id="@+id/txtLastMsgSent"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:text="Last Message sent:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtLastTemp" />
+
+    <TextView
+        android:id="@+id/txtLastTempVal"
+        android:layout_width="60dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="164dp"
+        android:layout_marginLeft="164dp"
+        android:layout_marginTop="1dp"
+        android:text="0"
+        app:layout_constraintStart_toEndOf="@+id/txtLastTemp"
+        app:layout_constraintTop_toBottomOf="@+id/txtMsgsReceivedVal" />
+
+</android.support.constraint.ConstraintLayout>
