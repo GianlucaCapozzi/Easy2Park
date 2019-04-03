@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sensoro.bootcompleted">
 
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
@@ -14,12 +15,14 @@
         android:icon="@mipmap/ic_sensoro"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
-        <activity android:name=".DisplayImageActivity"
-                android:parentActivityName=".MainActivity">
-                <!-- The meta-data tag is required if you support API level 15 and lower -->
-                <meta-data
-                    android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".MainActivity" />
+        <activity
+            android:name=".DisplayImageActivity"
+            android:parentActivityName=".MainActivity">
+
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
         </activity>
         <activity
             android:name=".MainActivity"
@@ -35,7 +38,8 @@
         <service android:name="com.sensoro.beacon.kit.BeaconService" />
         <service android:name="com.sensoro.beacon.kit.IntentProcessorService" />
 
-        <receiver android:name=".BootCompletedBroadcastReceiver">
+        <receiver android:name=".BootCompletedBroadcastReceiver" android:enabled="true"
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
 

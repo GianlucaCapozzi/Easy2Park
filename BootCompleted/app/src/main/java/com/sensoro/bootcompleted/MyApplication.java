@@ -8,6 +8,7 @@ import android.widget.ImageView;
 
 import com.sensoro.beacon.kit.Beacon;
 import com.sensoro.beacon.kit.BeaconManagerListener;
+import com.sensoro.beacon.kit.SensoroBeaconManager;
 import com.sensoro.cloud.SensoroManager;
 
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ public class MyApplication extends Application implements BeaconManagerListener{
         Intent intent = new Intent();
         intent.setClass(this,MyService.class);
         startService(intent);
+
     }
 
     /**
@@ -38,8 +40,8 @@ public class MyApplication extends Application implements BeaconManagerListener{
      */
     private void initSensoroSDK() {
         sensoroManager = SensoroManager.getInstance(getApplicationContext());
-        //sensoroManager.setCloudServiceEnable(true);
-       // sensoroManager.addBroadcastKey("7b4b5ff594fdaf8f9fc7f2b494e400016f461205");
+        sensoroManager.setCloudServiceEnable(false);
+        sensoroManager.addBroadcastKey("7b4b5ff594fdaf8f9fc7f2b494e400016f461205");
         sensoroManager.setBeaconManagerListener(this);
     }
 
@@ -88,8 +90,10 @@ public class MyApplication extends Application implements BeaconManagerListener{
                 RECOGNIZED=false;
             }
             // brings up the second activity
-            if(RECOGNIZED)startActivity(i);
-
+            if(RECOGNIZED) {
+                i.putExtra("temp",beacon.getTemperature().toString());
+                startActivity(i);
+            }
 
 
     }
