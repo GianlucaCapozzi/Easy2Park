@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.IBinder;
 
+import com.sensoro.beacon.kit.SensoroBeaconManager;
+
 /**
  * Created by Sensoro on 15/4/9.
  */
@@ -36,6 +38,7 @@ public class MyService extends Service{
             BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
             bluetoothAdapter.enable();
         }
+
     }
 
     @Override
