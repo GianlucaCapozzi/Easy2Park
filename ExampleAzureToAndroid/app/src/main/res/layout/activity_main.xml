@@ -140,40 +140,42 @@
         android:layout_marginRight="28dp"
         android:text="0"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintBottom_toTopOf="@+id/txtReceiptsConfirmedVal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
 
     <TextView
         android:id="@+id/txtReceiptsConfirmedVal"
         android:layout_width="60dp"
         android:layout_height="25dp"
-        android:layout_marginStart="182dp"
-        android:layout_marginLeft="182dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
         android:text="0"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        app:layout_constraintStart_toEndOf="@+id/txtReceiptsConfirmed"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtMsgsSentVal" />
 
     <TextView
         android:id="@+id/txtSendFailuresVal"
         android:layout_width="60dp"
         android:layout_height="25dp"
-        android:layout_marginStart="226dp"
-        android:layout_marginLeft="226dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
         android:text="0"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        app:layout_constraintStart_toEndOf="@+id/txtSendFailures"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtReceiptsConfirmedVal" />
 
     <TextView
         android:id="@+id/txtMsgsReceivedVal"
         android:layout_width="60dp"
         android:layout_height="25dp"
-        android:layout_marginStart="182dp"
-        android:layout_marginLeft="182dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
         android:text="0"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        app:layout_constraintStart_toEndOf="@+id/txtMsgsReceived"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtSendFailuresVal" />
 
     <TextView
@@ -191,11 +193,36 @@
         android:id="@+id/txtLastTempVal"
         android:layout_width="60dp"
         android:layout_height="25dp"
-        android:layout_marginStart="164dp"
-        android:layout_marginLeft="164dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
         android:text="0"
-        app:layout_constraintStart_toEndOf="@+id/txtLastTemp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtMsgsReceivedVal" />
+
+    <TextView
+        android:id="@+id/txtDevID"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="25dp"
+        android:text="DevID:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtLastMsgReceivedVal" />
+
+    <TextView
+        android:id="@+id/txtDevIDvalue"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginStart="171dp"
+        android:layout_marginLeft="171dp"
+        android:layout_marginTop="25dp"
+        android:text="{none}"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@android:color/holo_blue_dark"
+        app:layout_constraintStart_toEndOf="@+id/txtDevID"
+        app:layout_constraintTop_toBottomOf="@+id/txtLastMsgReceivedVal" />
 
 </android.support.constraint.ConstraintLayout>
