@@ -217,7 +217,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        msgStr =
+        msgStr = json.toString();
 
         //Gson gson = new Gson();
         //String sJs = gson.toJson(msgStr);
