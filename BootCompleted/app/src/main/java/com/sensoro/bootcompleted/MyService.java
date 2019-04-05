@@ -28,6 +28,7 @@ public class MyService extends Service{
     public void onCreate() {
         super.onCreate();
 
+        /*
         application = (MyApplication) getApplication();
         bluetoothBroadcastReceiver = new BluetoothBroadcastReceiver();
         registerReceiver(bluetoothBroadcastReceiver, new IntentFilter(Constant.BLE_STATE_CHANGED_ACTION));
@@ -38,7 +39,7 @@ public class MyService extends Service{
             BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
             bluetoothAdapter.enable();
         }
-
+        */
     }
 
     @Override

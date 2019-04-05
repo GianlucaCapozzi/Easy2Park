@@ -35,9 +35,11 @@ public class MyApplication extends Application implements BeaconManagerListener{
     private static final String TAG = MyApplication.class.getSimpleName();
     private SensoroManager sensoroManager;
 
-    private final String connString = "HostName=easy2parkHub.azure-devices.net;DeviceId=MyAndroidDevice;SharedAccessKey=rjrRRSMh+JTbu6tw4WjVisV/GDw/fNCh0Vaw1w5+jZs=\n";
+    private final String connString = BuildConfig.DeviceConnectionString;;
 
     IotHubClientProtocol protocol = IotHubClientProtocol.MQTT;
+
+
 
     private int msgSentCount = 0;
     private int msgReceivedCount = 0;
@@ -73,6 +75,8 @@ public class MyApplication extends Application implements BeaconManagerListener{
         intent.setClass(this,MyService.class);
         startService(intent);
 
+
+
     }
 
     /**
@@ -92,7 +96,7 @@ public class MyApplication extends Application implements BeaconManagerListener{
         try {
             sensoroManager.startService();
         } catch (Exception e) {
-            Log.v("ERROR","NOT STARTED sensoro sdkß");
+            Log.d("ERROR","NOT STARTED sensoro sdk");
             e.printStackTrace();
         }
     }
@@ -110,13 +114,17 @@ public class MyApplication extends Application implements BeaconManagerListener{
         /**
          * Check whether SDK started in logs.
          */
-        Log.v("BLUE-IN","IN " + beacon.getSerialNumber());
+        Log.d("BLUE-IN","IN " + beacon.getSerialNumber());
         //start image display activity
         //MainActivity.displayImage();
             Boolean RECOGNIZED=true;
             // first parameter is the context, second is the class of the activity to launch
             Intent i = new Intent(this, DisplayImageActivity.class);
-            // put "extras" into the bundle for access in the second activity
+
+            Intent azure_intent = new Intent();
+
+
+        // put "extras" into the bundle for access in the second activity
             if(beacon.getSerialNumber().equals("0117C59B4EC7") ){
                 i.putExtra("map_id", "general_map");
             }
@@ -131,199 +139,26 @@ public class MyApplication extends Application implements BeaconManagerListener{
             }
             // brings up the second activity
             if(RECOGNIZED) {
+
                 temperature = beacon.getTemperature();
                 i.putExtra("temp",beacon.getTemperature().toString());
+
+                temperature = beacon.getTemperature();
+
+                azure_intent.putExtra("temp", beacon.getTemperature().toString());
+                azure_intent.putExtra("devID", devID = "123341516");
+
+
                 if(beacon.getTemperature()!=null){
                     //TODO send to iothub temperature
                 }
-                //TODO remove this part
-                temperature = 99;
-                devID = "123";
+                Log.d("asd", "Starting azure service");
+                startService(azure_intent);
 
-                start();
-
+                Log.d("asd", "Starting map activity");
                 startActivity(i);
             }
 
-    }
-
-    public void start(){
-        sendThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    initClient();
-                    for(;;){
-                        sendMessages();
-                        Thread.sleep(sendMessagesInterval);
-                    }
-                } catch (InterruptedException e) {
-                    return;
-                } catch (Exception e) {
-                    lastException = "Exception while opening IoTHub connection: " + e;
-                    handler.post(exceptionRunnable);
-                }
-            }
-        });
-        sendThread.start();
-    }
-
-    private void sendMessages(){
-        JSONObject json = new JSONObject();
-
-        try {
-            json.put("devID", devID);
-            json.put("temperature", String.format("%.2f", temperature));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        msgStr = json.toString();
-
-        try {
-            sendMessage = new Message(msgStr);
-            Log.d("asd", msgStr);
-            sendMessage.setProperty("temperatureAlert", temperature > 28 ? "true" : "false");
-            System.out.println("Message sent: " + msgStr);
-            EventCallback eventCallback = new EventCallback();
-            client.sendEventAsync(sendMessage, eventCallback, msgSentCount);
-            msgSentCount++;
-        } catch (Exception e) {
-            System.err.println("Exception while sending event: " + e);
-        }
-    }
-
-    final Runnable methodNotificationRunnable = new Runnable(){
-        @Override
-        public void run() {
-            Context context = getApplicationContext();
-            CharSequence text = "Set Send Messages Interval to " + sendMessagesInterval + "ms";
-            // Toast is a small popup in which there are some informations
-        }
-    };
-
-    private void initClient() throws URISyntaxException, IOException {
-        client = new DeviceClient(connString, protocol);
-        try {
-            client.registerConnectionStatusChangeCallback(new IotHubConnectionStatusChangeCallbackLogger(), new Object());
-            client.open();
-            MessageCallback callback = new MessageCallback();
-            client.setMessageCallback(callback, null);
-            client.subscribeToDeviceMethod(new SampleDeviceMethodCallback(), getApplicationContext(), new DeviceMethodStatusCallback(), null);
-        } catch (Exception e){
-            System.err.println("Exception while opening IoTHub connection: " + e);
-            client.closeNow();
-            System.out.println("Shutting down...");
-        }
-    }
-
-    protected static class IotHubConnectionStatusChangeCallbackLogger implements IotHubConnectionStatusChangeCallback {
-        @Override
-        public void execute(IotHubConnectionStatus status, IotHubConnectionStatusChangeReason statusChangeReason, Throwable throwable, Object callbackContext) {
-            System.out.println();
-            System.out.println("CONNECTION STATUS UPDATE: " + status);
-            System.out.println("CONNECTION STATUS REASON: " + statusChangeReason);
-            System.out.println("CONNECTION STATUS THROWABLE: " + (throwable == null ? "null" : throwable.getMessage()));
-            System.out.println();
-
-            if (throwable != null) {
-                throwable.printStackTrace();
-            }
-
-            if (status == IotHubConnectionStatus.DISCONNECTED) {
-                //connection was lost, and is not being re-established. Look at provided exception for
-                // how to resolve this issue. Cannot send messages until this issue is resolved, and you manually
-                // re-open the device client
-            }
-            else if (status == IotHubConnectionStatus.DISCONNECTED_RETRYING) {
-                //connection was lost, but is being re-established. Can still send messages, but they won't
-                // be sent until the connection is re-established
-            }
-            else if (status == IotHubConnectionStatus.CONNECTED) {
-                //Connection was successfully re-established. Can send messages.
-            }
-        }
-    }
-
-    protected class SampleDeviceMethodCallback implements com.microsoft.azure.sdk.iot.device.DeviceTwin.DeviceMethodCallback {
-        @Override
-        public DeviceMethodData call(String methodName, Object methodData, Object context) {
-            DeviceMethodData deviceMethodData ;
-            try {
-                switch (methodName) {
-                    case "setSendMessagesInterval": {
-                        int status = method_setSendMessagesInterval(methodData);
-                        deviceMethodData = new DeviceMethodData(status, "executed " + methodName);
-                        break;
-                    }
-                    default: {
-                        int status = method_default(methodData);
-                        deviceMethodData = new DeviceMethodData(status, "executed " + methodName);
-                    }
-                }
-            }
-            catch (Exception e) {
-                int status = METHOD_THROWS;
-                deviceMethodData = new DeviceMethodData(status, "Method Throws " + methodName);
-            }
-            return deviceMethodData;
-        }
-    }
-
-    private int method_setSendMessagesInterval(Object methodData) throws UnsupportedEncodingException, JSONException{
-        String payload = new String ((byte[])methodData, "UTF-8").replace("\"", "");
-        JSONObject obj = new JSONObject(payload);
-        sendMessagesInterval = obj.getInt("sendInterval");
-        handler.post(methodNotificationRunnable);
-        return METHOD_SUCCESS;
-    }
-
-    private int method_default(Object data){
-        System.out.println("Invoking default method for this device");
-        // Insert device specific code here
-        return METHOD_NOT_DEFINED;
-    }
-
-
-    final Runnable exceptionRunnable = new Runnable() {
-        @Override
-        public void run() {
-            System.out.println("EXCEPTION RUNNABLE");
-        }
-    };
-
-    class EventCallback implements IotHubEventCallback { // Received confirm message from IoT Hub
-        public void execute(IotHubStatusCode status, Object context) {
-            Integer i = context instanceof Integer ? (Integer) context : 0;
-            System.out.println("IoT Hub responded to message " + i.toString()
-                    + " with status " + status.name());
-
-            if((status == IotHubStatusCode.OK) || (status == IotHubStatusCode.OK_EMPTY)) { // OK response
-                System.out.println("Response ok");
-            }
-            else { // Failed response
-                System.out.println("Response no");
-            }
-        }
-    }
-
-    class MessageCallback implements com.microsoft.azure.sdk.iot.device.MessageCallback {
-
-        @Override
-        public IotHubMessageResult execute(Message msg, Object callbackContext) {
-            String s = msgStr + Message.DEFAULT_IOTHUB_MESSAGE_CHARSET;
-            System.out.println("Received message with content: " + s);
-            msgReceivedCount++;
-            return IotHubMessageResult.COMPLETE;
-        }
-    }
-
-    protected class DeviceMethodStatusCallback implements IotHubEventCallback{
-
-        @Override
-        public void execute(IotHubStatusCode responseStatus, Object callbackContext) {
-            System.out.println("IoT Hub responded to device method operation with status " + responseStatus.name());
-        }
     }
 
     @Override
