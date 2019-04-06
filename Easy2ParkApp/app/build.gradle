@@ -6,6 +6,7 @@ android {
         applicationId "com.example.easy2park"
         minSdkVersion 21
         targetSdkVersion 28
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -16,6 +17,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    packagingOptions{
+        exclude "META-INF/MSFTSIG.SF"
+        exclude "META-INF/MSFTSIG.RSA"
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'thirdpartynotice.txt'
+    }
+
 }
 
 dependencies {
@@ -25,5 +37,23 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
     implementation files('libs/sensoro-beacon-kit-4.3.jar')
+    implementation 'com.android.support:support-v4:28.0.0'
+//    compile files('libs/greendao-1.3.7.jar')
+
+    //网络请求包
+    //implementation 'com.loopj.android:android-async-http:1.4.9'
+
+    implementation ('com.microsoft.azure.sdk.iot:iot-device-client:1.14.2'){
+        exclude module: 'azure-storage'
+    }
+    implementation ('com.microsoft.azure.android:azure-storage-android:2.0.0@aar')
+    implementation ('org.apache.commons:commons-lang3:3.6')
+
+    implementation ('com.google.android.gms:play-services-location:16.0.0')
+}
+
+repositories{
+    mavenCentral()
 }

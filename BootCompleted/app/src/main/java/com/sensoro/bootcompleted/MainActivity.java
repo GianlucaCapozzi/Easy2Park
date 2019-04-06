@@ -37,8 +37,10 @@ import com.google.android.gms.tasks.Task;
 public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_ENABLE_BT = 10000;
 
-    private MyApplication application;
+    private MyApplication application = (MyApplication) getApplication();;
     private BluetoothBroadcastReceiver bluetoothBroadcastReceiver;
+    BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+
 
     private int request=0, max_request=99;
 
@@ -48,12 +50,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        application = (MyApplication) getApplication();
         bluetoothBroadcastReceiver = new BluetoothBroadcastReceiver();
         registerReceiver(bluetoothBroadcastReceiver,new IntentFilter(Constant.BLE_STATE_CHANGED_ACTION));
         Log.d("asd", "In MainActivity, starting");
-
-        BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
         if (mBluetoothAdapter == null){
             application.startSensoroSDK();
@@ -161,7 +160,8 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(Constant.BLE_STATE_CHANGED_ACTION)){
-                if (application.isBluetoothEnabled()){
+
+                if (mBluetoothAdapter == null){
                     application.startSensoroSDK();
                 }
             }

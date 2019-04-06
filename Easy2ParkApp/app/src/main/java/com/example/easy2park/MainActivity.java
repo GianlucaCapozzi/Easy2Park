@@ -6,14 +6,18 @@ import android.app.AlertDialog;
 import android.app.NotificationManager;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothManager;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -25,29 +29,7 @@ import com.sensoro.cloud.SensoroManager;
 import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class MainActivity extends FragmentActivity {
-
-    RelativeLayout containLayout;
-    BeaconsFragment beaconsFragment;
-    DetailFragment detailFragment;
-    DistanceFragment distanceFragment;
-    RangeFragment rangeFragment;
-    TemperatureFragment temperatureFragment;
-    LightFragment lightFragment;
-    MoveFragment moveFragment;
-    NotificationFragment notificationFragment;
-
-    ActionBar actionBar;
-    LayoutInflater inflater;
-    RelativeLayout actionBarMainLayout;
-    RelativeLayout actionBarLayout;
-    TTFIcon freshIcon;
-    TTFIcon infoIcon;
-    TextView actionBarTitle;
-
-    NotificationManager notificationManager;
-    public static final int NOTIFICATION_ID = 0;
-    SharedPreferences sharedPreferences;
+public class MainActivity extends AppCompatActivity {
 
     MyApp app;
 
@@ -67,27 +49,33 @@ public class MainActivity extends FragmentActivity {
 
     BluetoothManager bluetoothManager;
     BluetoothAdapter bluetoothAdapter;
-    ArrayList<OnBeaconChangeListener> beaconListeners;
+    private BluetoothBroadcastReceiver bluetoothBroadcastReceiver;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        initCtrl();
     }
 
     private void initCtrl() {
 
+        Log.d("asd", "Ma ce entri qua?");
+
         app = (MyApp) getApplication();
 
-        sensoroManager = app.sensoroManager;
-        beacons = new CopyOnWriteArrayList<Beacon>();
-        beaconListeners = new ArrayList<OnBeaconChangeListener>();
-        notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        sharedPreferences = getPreferences(Activity.MODE_PRIVATE);
+        bluetoothBroadcastReceiver = new BluetoothBroadcastReceiver();
+        registerReceiver(bluetoothBroadcastReceiver,new IntentFilter(Constant.BLE_STATE_CHANGED_ACTION));
 
+        if(isBlueEnabled()){
+            Log.d("asd", "Created app");
+            app.onCreate();
+        }
     }
 
-    private boolean isBlueEnable() {
+    private boolean isBlueEnabled() {
+        Log.d("asd", "Checking bluetooth in MainActivity");
         bluetoothManager = (BluetoothManager) getSystemService(BLUETOOTH_SERVICE);
         bluetoothAdapter = bluetoothManager.getAdapter();
         boolean status = bluetoothAdapter.isEnabled();
@@ -113,91 +101,17 @@ public class MainActivity extends FragmentActivity {
         return status;
     }
 
-    private void initSensoroListener() {
-        beaconManagerListener = new BeaconManagerListener() {
+    class BluetoothBroadcastReceiver extends BroadcastReceiver {
 
-            @Override
-            public void onUpdateBeacon(final ArrayList<Beacon> arg0) {
-                /*
-                 * beacons has bean scaned in this scanning period.
-                 */
-                if (beaconsFragment == null) {
-                    beaconsFragment = (BeaconsFragment) getSupportFragmentManager().findFragmentByTag(TAG_FRAG_BEACONS);
-                }
-                if (beaconsFragment == null) {
-                    return;
-                }
-                /*
-                 * beaconsFragment.isVisible()
-                 */
-                if (beaconsFragment.isVisible()) {
-                    /*
-                     * Add the update beacons into the grid.
-                     */
-                    for (Beacon beacon : arg0) {
-                        if (beacons.contains(beacon)) {
-                            continue;
-                        }
-                        /*
-                         * filter
-                         */
-
-                        if (TextUtils.isEmpty(beaconFilter)) {
-                            beacons.add(beacon);
-                        } else {
-                            String matchString = String.format(matchFormat, beacon.getSerialNumber(), beacon.getMajor(), beacon.getMinor());
-                            if (matchString.contains(beaconFilter)) {
-                                beacons.add(beacon);
-                            }
-                        }
-                    }
-                }
-                runOnUiThread(new Runnable() {
-                    public void run() {
-                        for (OnBeaconChangeListener listener : beaconListeners) {
-                            if (listener == null) {
-                                continue;
-                            }
-                            listener.onBeaconChange(arg0);
-                        }
-                    }
-                });
-
-            }
-
-            @Override
-            public void onNewBeacon(Beacon arg0) {
-                /*
-                 * A new beacon appears.
-                 */
-                String key = getKey(arg0);
-                boolean state = sharedPreferences.getBoolean(key, false);
-                if (state) {
-                    /*
-                     * show notification
-                     */
-
-                    showNotification(arg0, true);
-                }
-
-            }
-
-            @Override
-            public void onGoneBeacon(Beacon arg0) {
-                /*
-                 * A beacon disappears.
-                 */
-                String key = getKey(arg0);
-                boolean state = sharedPreferences.getBoolean(key, false);
-                if (state) {
-                    /*
-                     * show notification
-                     */
-
-                    showNotification(arg0, false);
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(Constant.BLE_STATE_CHANGED_ACTION)){
+                if (isBlueEnabled()){
+                    app.startSensoroSDK();
                 }
             }
-        };
+        }
     }
+
 
 }
