@@ -31,7 +31,7 @@ public class MyApp extends Application implements BeaconManagerListener{
          */
         Intent intent = new Intent();
         intent.setClass(this,MyService.class);
-        startService(intent);
+        //startService(intent);
     }
 
     private void initSensoro() {
@@ -109,7 +109,7 @@ public class MyApp extends Application implements BeaconManagerListener{
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
         Intent azure_intent = new Intent();
-
+        azure_intent.setClass(this, AzureService.class);
 
         // put "extras" into the bundle for access in the second activity
         if(beacon.getSerialNumber().equals("0117C59B4EC7") ){
@@ -140,8 +140,9 @@ public class MyApp extends Application implements BeaconManagerListener{
             if(beacon.getTemperature()!=null){
                 //TODO send to iothub temperature
             }
-            //Log.d("asd", "Starting azure service");
-            //startService(azure_intent);
+
+            Log.d("asd", "Starting azure service");
+            startService(azure_intent);
 
             Log.d("asd", "Starting map activity");
             startActivity(i);

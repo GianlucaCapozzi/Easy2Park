@@ -1,5 +1,10 @@
 apply plugin: 'com.android.application'
 
+//***********************************************************************************************//
+def IOTHUB_DEVICE_CONNECTION_STRING_ENV_VAR_NAME = project.hasProperty('DeviceConnectionString') ? '"'+project.property('DeviceConnectionString')+'"' : '"Define Device Connection"'
+def STRING='String'
+//***********************************************************************************************//
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -10,6 +15,9 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        each{
+            buildConfigField STRING, 'DeviceConnectionString', IOTHUB_DEVICE_CONNECTION_STRING_ENV_VAR_NAME
+        }
     }
     buildTypes {
         release {
