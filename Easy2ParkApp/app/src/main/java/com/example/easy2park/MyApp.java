@@ -113,7 +113,7 @@ public class MyApp extends Application implements BeaconManagerListener{
 
         // put "extras" into the bundle for access in the second activity
         if(beacon.getSerialNumber().equals("0117C59B4EC7") ){
-            Log.d("asd", "Ecco er beacon");
+            Log.d("asd", "BEACON PRO");
             i.putExtra("map_id", "general_map");
         }
         else if(beacon.getSerialNumber().equals("0117C582CAD7")){
@@ -130,6 +130,7 @@ public class MyApp extends Application implements BeaconManagerListener{
 
             temperature = beacon.getTemperature();
             i.putExtra("temp",beacon.getTemperature().toString());
+            i.putExtra("devID", devID = "123341516");
 
             temperature = beacon.getTemperature();
 
@@ -141,8 +142,8 @@ public class MyApp extends Application implements BeaconManagerListener{
                 //TODO send to iothub temperature
             }
 
-            Log.d("asd", "Starting azure service");
-            startService(azure_intent);
+            //Log.d("asd", "Starting azure service");
+            //startService(azure_intent);
 
             Log.d("asd", "Starting map activity");
             startActivity(i);
