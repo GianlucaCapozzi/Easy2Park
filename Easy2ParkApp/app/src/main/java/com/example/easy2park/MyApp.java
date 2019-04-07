@@ -9,6 +9,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Handler;
+import android.provider.Settings;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import com.microsoft.azure.sdk.iot.device.DeviceClient;
@@ -37,8 +39,11 @@ public class MyApp extends Application implements BeaconManagerListener{
     private static final String TAG = MyApp.class.getSimpleName();
     SensoroManager sensoroManager;
 
-    private int temperature;
+    private String temperature;
     private String devID;
+    private String beaconID;
+
+    TelephonyManager telephonyManager;
 
     @Override
     public void onCreate() {
@@ -121,7 +126,7 @@ public class MyApp extends Application implements BeaconManagerListener{
         Intent i = new Intent(this, DisplayImageActivity.class);
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-
+        beaconID = beacon.getSerialNumber();
         // put "extras" into the bundle for access in the second activity
         if(beacon.getSerialNumber().equals("0117C59B4EC7") ){
             Log.d("asd", "BEACON PRO");
@@ -139,11 +144,12 @@ public class MyApp extends Application implements BeaconManagerListener{
         // brings up the second activity
         if(RECOGNIZED) {
 
-            temperature = beacon.getTemperature();
-            i.putExtra("temp", Integer.toString(temperature));
-            i.putExtra("devID", devID = "123341516");
+            temperature = beacon.getTemperature().toString();
+            //devID = Settings.Secure.getString(this.getContentResolver(),
+            //        Settings.Secure.ANDROID_ID);
 
-
+            i.putExtra("temp", temperature);
+            i.putExtra("devID", devID);
 
             Log.d("asd", "Starting map activity");
             startActivity(i);
@@ -154,12 +160,12 @@ public class MyApp extends Application implements BeaconManagerListener{
             Intent azure_intent = new Intent();
             azure_intent.setClass(this, AzureService.class);
 
-            azure_intent.putExtra("temp", beacon.getTemperature().toString());
-            azure_intent.putExtra("devID", devID = "123341516");
+            azure_intent.putExtra("temp", temperature);
+            azure_intent.putExtra("devID", devID);
+            azure_intent.putExtra("beaconID", beaconID);
 
-
-            //Log.d("asd", "Starting azure service");
-            //startService(azure_intent);
+            Log.d("asd", "Starting azure service");
+            startService(azure_intent);
         }
     }
 

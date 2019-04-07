@@ -52,6 +52,7 @@ public class AzureService extends Service {
 
     private String temperature;
     private String devID;
+    private String beaconID;
 
     private static final int METHOD_SUCCESS = 200;
     private static final int METHOD_THROWS = 403;
@@ -76,10 +77,13 @@ public class AzureService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        //String userID = intent.getStringExtra("UserID");
+
         Log.d("AzureServ", "In onStartCommand");
+
         temperature = intent.getStringExtra("temp");
         devID = intent.getStringExtra("devID");
+        beaconID = intent.getStringExtra("beaconID");
+
         start();
         return START_STICKY;
     }
@@ -90,10 +94,10 @@ public class AzureService extends Service {
             public void run() {
                 try {
                     initClient();
-                    //for(int j = 0; j < 50; j++) {
-                    sendMessages();
-                    Thread.sleep(sendMessagesInterval);
-                    //}
+                    for(int j = 0; j < 20; j++) {
+                        sendMessages();
+                        Thread.sleep(sendMessagesInterval);
+                    }
                 } catch (InterruptedException e) {
                     return;
                 } catch (Exception e) {
@@ -111,6 +115,7 @@ public class AzureService extends Service {
         try {
             json.put("devID", devID);
             json.put("temperature", temperature);
+            json.put("beaconID", beaconID);
         } catch (JSONException e) {
             e.printStackTrace();
         }
