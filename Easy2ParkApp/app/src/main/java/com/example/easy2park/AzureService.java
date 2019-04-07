@@ -1,5 +1,6 @@
 package com.example.easy2park;
 
+import android.app.AlertDialog;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -89,10 +90,10 @@ public class AzureService extends Service {
             public void run() {
                 try {
                     initClient();
-                    for(int j = 0; j < 50; j++) {
-                        sendMessages();
-                        Thread.sleep(sendMessagesInterval);
-                    }
+                    //for(int j = 0; j < 50; j++) {
+                    sendMessages();
+                    Thread.sleep(sendMessagesInterval);
+                    //}
                 } catch (InterruptedException e) {
                     return;
                 } catch (Exception e) {
@@ -122,7 +123,9 @@ public class AzureService extends Service {
             //sendMessage.setProperty("temperatureAlert", temperature > 28 ? "true" : "false");
             System.out.println("Message sent: " + msgStr);
             EventCallback eventCallback = new EventCallback();
+            Log.d("asd", "Before event async");
             client.sendEventAsync(sendMessage, eventCallback, msgSentCount);
+            Log.d("asd", "After event async");
             msgSentCount++;
         } catch (Exception e) {
             System.err.println("Exception while sending event: " + e);
@@ -227,6 +230,9 @@ public class AzureService extends Service {
     final Runnable exceptionRunnable = new Runnable() {
         @Override
         public void run() {
+            AlertDialog.Builder builder = new AlertDialog.Builder(AzureService.this);
+            builder.setMessage(lastException);
+            builder.show();
             System.out.println("EXCEPTION RUNNABLE");
         }
     };
@@ -252,8 +258,8 @@ public class AzureService extends Service {
 
         @Override
         public IotHubMessageResult execute(Message msg, Object callbackContext) {
-            String s = msgStr + Message.DEFAULT_IOTHUB_MESSAGE_CHARSET;
-            System.out.println("Received message with content: " + s);
+            String s = new String(msgStr.getBytes(), Message.DEFAULT_IOTHUB_MESSAGE_CHARSET);
+            Log.d("asd", "Received message with content: " + s);
             msgReceivedCount++;
             return IotHubMessageResult.COMPLETE;
         }

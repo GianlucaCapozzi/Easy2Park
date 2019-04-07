@@ -61,8 +61,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void initCtrl() {
 
-        Log.d("asd", "Ma ce entri qua?");
-
         app = (MyApp) getApplication();
 
         bluetoothBroadcastReceiver = new BluetoothBroadcastReceiver();

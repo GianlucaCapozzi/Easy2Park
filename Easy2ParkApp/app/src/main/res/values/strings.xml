@@ -54,4 +54,5 @@
     <string name="moving">moving</string>
     <string name="closed">closed</string>
     <string name="lx">lx</string>
+    <string name="send">I\'ve parked here</string>
 </resources>

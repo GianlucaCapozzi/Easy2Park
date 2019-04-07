@@ -4,14 +4,32 @@ import android.app.AlertDialog;
 import android.app.Application;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
+import android.os.Handler;
 import android.util.Log;
 
+import com.microsoft.azure.sdk.iot.device.DeviceClient;
+import com.microsoft.azure.sdk.iot.device.DeviceTwin.DeviceMethodData;
+import com.microsoft.azure.sdk.iot.device.IotHubClientProtocol;
+import com.microsoft.azure.sdk.iot.device.IotHubConnectionStatusChangeCallback;
+import com.microsoft.azure.sdk.iot.device.IotHubConnectionStatusChangeReason;
+import com.microsoft.azure.sdk.iot.device.IotHubEventCallback;
+import com.microsoft.azure.sdk.iot.device.IotHubMessageResult;
+import com.microsoft.azure.sdk.iot.device.IotHubStatusCode;
+import com.microsoft.azure.sdk.iot.device.Message;
+import com.microsoft.azure.sdk.iot.device.transport.IotHubConnectionStatus;
 import com.sensoro.cloud.SensoroManager;
 import com.sensoro.beacon.kit.*;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 public class MyApp extends Application implements BeaconManagerListener{
@@ -26,12 +44,6 @@ public class MyApp extends Application implements BeaconManagerListener{
     public void onCreate() {
         super.onCreate();
         initSensoro();
-        /**
-         * Start SDK in Service
-         */
-        Intent intent = new Intent();
-        intent.setClass(this,MyService.class);
-        //startService(intent);
     }
 
     private void initSensoro() {
@@ -89,10 +101,10 @@ public class MyApp extends Application implements BeaconManagerListener{
 
     @Override
     public void onTerminate() {
+        super.onTerminate();
         if (sensoroManager != null) {
             sensoroManager.stopService();
         }
-        super.onTerminate();
     }
 
     @Override
@@ -129,26 +141,21 @@ public class MyApp extends Application implements BeaconManagerListener{
         if(RECOGNIZED) {
 
             temperature = beacon.getTemperature();
-            i.putExtra("temp",beacon.getTemperature().toString());
+            i.putExtra("temp", Integer.toString(temperature));
             i.putExtra("devID", devID = "123341516");
 
-            temperature = beacon.getTemperature();
-
-            azure_intent.putExtra("temp", beacon.getTemperature().toString());
+            azure_intent.putExtra("temp", Integer.toString(temperature));
             azure_intent.putExtra("devID", devID = "123341516");
 
-
-            if(beacon.getTemperature()!=null){
-                //TODO send to iothub temperature
-            }
-
-            //Log.d("asd", "Starting azure service");
-            //startService(azure_intent);
+            Log.d("asd", "Starting azure service");
+            //start();
+            startService(azure_intent);
 
             Log.d("asd", "Starting map activity");
             startActivity(i);
         }
     }
+
 
     @Override
     public void onGoneBeacon(Beacon beacon) {
@@ -161,4 +168,5 @@ public class MyApp extends Application implements BeaconManagerListener{
             Log.v("BLUE-UPDATE", "UPDATE " + b.getSerialNumber() + "----"+ b);
         }
     }
+
 }
