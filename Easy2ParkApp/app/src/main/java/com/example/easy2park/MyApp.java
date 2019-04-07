@@ -43,8 +43,6 @@ public class MyApp extends Application implements BeaconManagerListener{
     private String devID;
     private String beaconID;
 
-    TelephonyManager telephonyManager;
-
     @Override
     public void onCreate() {
         super.onCreate();
@@ -145,8 +143,8 @@ public class MyApp extends Application implements BeaconManagerListener{
         if(RECOGNIZED) {
 
             temperature = beacon.getTemperature().toString();
-            //devID = Settings.Secure.getString(this.getContentResolver(),
-            //        Settings.Secure.ANDROID_ID);
+            devID = Settings.Secure.getString(this.getContentResolver(),
+                    Settings.Secure.ANDROID_ID);
 
             i.putExtra("temp", temperature);
             i.putExtra("devID", devID);
