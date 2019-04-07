@@ -184,8 +184,8 @@ public class MyApp extends Application implements BeaconManagerListener{
 	Intent azure_intent = new Intent();
         azure_intent.setClass(this, AzureService.class);
 
-        azure_intent.putExtra("temp", "718");
-        azure_intent.putExtra("devID", "giu");
+        azure_intent.putExtra("temp", "123");
+        azure_intent.putExtra("devID", "testID");
 
 
         Log.d("asd", "Starting azure service");
