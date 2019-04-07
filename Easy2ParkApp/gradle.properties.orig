@@ -12,4 +12,9 @@ org.gradle.jvmargs=-Xmx1536m
 # http://www.gradle.org/docs/current/userguide/multi_project_builds.html#sec:decoupled_projects
 # org.gradle.parallel=true
 org.gradle.parallel=true
+<<<<<<< Updated upstream
 DeviceConnectionString=HostName=example-iot-hub-test.azure-devices.net;DeviceId=MyAndroidDevice;SharedAccessKey=1HufOpKCAbpZwmt+ZkuOTqD4N6bDdiRxnROJamT+DbY=
+=======
+DeviceConnectionString=HostName=example-iot-hub-test.azure-devices.net;DeviceId=MyAndroidDevice;SharedAccessKey=1HufOpKCAbpZwmt+ZkuOTqD4N6bDdiRxnROJamT+DbY=
+
+>>>>>>> Stashed changes

@@ -44,7 +44,22 @@ public class MyApp extends Application implements BeaconManagerListener{
     public void onCreate() {
         super.onCreate();
         initSensoro();
-        //testAzureSevice();
+<<<<<<< Updated upstream
+=======
+        /**
+         * Start SDK in Service
+         */
+        //Intent intent = new Intent();
+        //intent.setClass(this,MyService.class);
+        //startService(intent);
+
+        /*
+        OR SDk started in main activity
+        */
+
+        Log.v("AZURE","testing Azure Service");
+        testAzureSevice();
+>>>>>>> Stashed changes
     }
 
     private void initSensoro() {
@@ -54,12 +69,13 @@ public class MyApp extends Application implements BeaconManagerListener{
         try {
             sensoroManager.startService();
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                sensoroManager.setForegroundScanPeriod(7000);
+                sensoroManager.setForegroundScanPeriod(10000);
             }
         } catch (Exception e) {
             Log.e(TAG, e.toString());
         }
     }
+
 
     public boolean isBlueEnabled() {
         Log.d("asd", "Checking bluetooth in MyApp");
@@ -113,6 +129,7 @@ public class MyApp extends Application implements BeaconManagerListener{
         /**
          * Check whether SDK started in logs.
          */
+
         Log.d("BLUE-IN","IN " + beacon.getSerialNumber());
         //start image display activity
         //MainActivity.displayImage();
@@ -143,7 +160,24 @@ public class MyApp extends Application implements BeaconManagerListener{
             i.putExtra("temp", Integer.toString(temperature));
             i.putExtra("devID", devID = "123341516");
 
+<<<<<<< Updated upstream
+            azure_intent.putExtra("temp", Integer.toString(temperature));
+            azure_intent.putExtra("devID", devID = "123341516");
 
+            Log.d("asd", "Starting azure service");
+            //start();
+            startService(azure_intent);
+=======
+            temperature = beacon.getTemperature();
+
+
+
+
+            if(beacon.getTemperature()!=null){
+                //TODO send to iothub temperature
+            }
+
+>>>>>>> Stashed changes
 
             Log.d("asd", "Starting map activity");
             startActivity(i);
@@ -163,6 +197,7 @@ public class MyApp extends Application implements BeaconManagerListener{
         }
     }
 
+
     @Override
     public void onGoneBeacon(Beacon beacon) {
         Log.v("BLUE-OUT","OUT"+ beacon.getSerialNumber());
@@ -175,9 +210,10 @@ public class MyApp extends Application implements BeaconManagerListener{
         }
     }
 
+<<<<<<< Updated upstream
+=======
     private void testAzureSevice(){
-	Log.v("AZURE","testing Azure Service");        
-	Intent azure_intent = new Intent();
+        Intent azure_intent = new Intent();
         azure_intent.setClass(this, AzureService.class);
 
         azure_intent.putExtra("temp", "718");
@@ -187,4 +223,5 @@ public class MyApp extends Application implements BeaconManagerListener{
         Log.d("asd", "Starting azure service");
         startService(azure_intent);
     }
+>>>>>>> Stashed changes
 }

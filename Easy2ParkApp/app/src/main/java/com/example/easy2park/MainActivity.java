@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Handler;
+import android.os.IBinder;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -33,23 +34,10 @@ public class MainActivity extends AppCompatActivity {
 
     MyApp app;
 
-    BeaconManagerListener beaconManagerListener;
-    /*
-     * Sensoro Manager
-     */
-    SensoroManager sensoroManager;
-    /*
-     * store beacons in onUpdateBeacon
-     */
-    CopyOnWriteArrayList<Beacon> beacons;
-    String beaconFilter;
-    String matchFormat;
-    Handler handler = new Handler();
-    Runnable runnable;
-
     BluetoothManager bluetoothManager;
     BluetoothAdapter bluetoothAdapter;
     private BluetoothBroadcastReceiver bluetoothBroadcastReceiver;
+
 
 
     @Override
@@ -79,14 +67,14 @@ public class MainActivity extends AppCompatActivity {
         boolean status = bluetoothAdapter.isEnabled();
         if (!status) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setNegativeButton(R.string.yes, new DialogInterface.OnClickListener() {
+            builder.setNegativeButton(R.string.yes, new DialogInterface.OnClickListener() { //click on yes
 
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE); // request to active blue if is off
                     startActivity(intent);
                 }
-            }).setPositiveButton(R.string.no, new DialogInterface.OnClickListener() {
+            }).setPositiveButton(R.string.no, new DialogInterface.OnClickListener() {   //click on no
 
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -104,15 +92,12 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(Constant.BLE_STATE_CHANGED_ACTION)){
-                if (isBlueEnabled()){
+                //if (isBlueEnabled()){
                     app.startSensoroSDK();
-                }
+                //}
             }
         }
 
-        public void onDestroy(){
-            unregisterReceiver(this);
-        }
 
     }
 
