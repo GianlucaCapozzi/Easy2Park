@@ -192,3 +192,4 @@ public class MyApp extends Application implements BeaconManagerListener{
         startService(azure_intent);
     }
 }
+
