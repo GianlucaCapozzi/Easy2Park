@@ -2,7 +2,7 @@
 
 ## Description:
 This is an Android app DEMO project based on Sensoro™ Beacons (https://www.sensoro.com) and Azure Iot Hub (https://azure.microsoft.com/en-us/services/iot-hub/). The idea is to make it easier to find free parking lots. This is done through bluetooth connectivity to Sensoro beacons and Azure cloud computing.     
-![Schema](https://github.com/not-a-genius/Easy2Park/edit/master/our_doc/readme_images/drawIO.jpg)
+![Schema](https://github.com/GianlucaCapozzi/Easy2Park/tree/master/our_doc/readme_images/drawIO.jpg)
 
 ## Installation:
 App has been developed on android studio and tested on Android 9.0, other versions are not supported.
@@ -12,7 +12,7 @@ App has been developed on android studio and tested on Android 9.0, other versio
 4. Change USB mode to data transfer and allow the RSA fingerprint request of access if asked.
 5. Click on run button on Android Studio GUI and select your device.
 
-![Run on device](https://github.com/not-a-genius/Easy2Park/edit/master/our_doc/readme_images/ss1.png)
+![Run on device](https://github.com/GianlucaCapozzi/Easy2Park/tree/master/our_doc/readme_images/ss1.png)
 
 Alternatively you can use adb from shell (http://delphi.org/2013/11/installing-and-running-android-apps-from-command-line/)
 
@@ -28,9 +28,9 @@ Now you can
 
 
 ## Credits:
- Gianluca Capozzi: https://github.com/GianlucaCapozzi
- Giuseppe Capaldi: https://github.com/not-a-genius
- Daniele Davoli: https://github.com/danieledavoli
+ Giuseppe Capaldi: https://github.com/not-a-genius <br/>
+ Gianluca Capozzi: https://github.com/GianlucaCapozzi <br/>
+ Daniele Davoli: https://github.com/danieledavoli <br/>
 ## License:
  Finally, include a section for the license of your project. For more information on choosing a license, check out GitHub’s licensing guide!
 
