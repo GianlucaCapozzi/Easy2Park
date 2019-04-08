@@ -51,6 +51,12 @@ public class MainActivity extends AppCompatActivity {
         initCtrl();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(bluetoothBroadcastReceiver);
+    }
+
     private void initCtrl() {
 
         app = (MyApp) getApplication();
@@ -100,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
                 app.startSensoroSDK();
             }
         }
+
 
 
     }

@@ -72,7 +72,19 @@ public class AzureService extends Service {
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    sendThread.interrupt();
+                    client.closeNow();
+                    Log.d("AzureServ","Shutting down...");
+                } catch (Exception e) {
+                    lastException = "Exception while closing IoTHub connection: " + e;
+                    handler.post(exceptionRunnable);
+                }
+            }
+        }).start();
     }
 
     @Override
@@ -277,6 +289,8 @@ public class AzureService extends Service {
             System.out.println("IoT Hub responded to device method operation with status " + responseStatus.name());
         }
     }
+
+
 
 
 }

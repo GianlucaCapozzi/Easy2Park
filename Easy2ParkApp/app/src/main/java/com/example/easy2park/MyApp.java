@@ -10,28 +10,11 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Handler;
 import android.provider.Settings;
-import android.telephony.TelephonyManager;
 import android.util.Log;
 
-import com.microsoft.azure.sdk.iot.device.DeviceClient;
-import com.microsoft.azure.sdk.iot.device.DeviceTwin.DeviceMethodData;
-import com.microsoft.azure.sdk.iot.device.IotHubClientProtocol;
-import com.microsoft.azure.sdk.iot.device.IotHubConnectionStatusChangeCallback;
-import com.microsoft.azure.sdk.iot.device.IotHubConnectionStatusChangeReason;
-import com.microsoft.azure.sdk.iot.device.IotHubEventCallback;
-import com.microsoft.azure.sdk.iot.device.IotHubMessageResult;
-import com.microsoft.azure.sdk.iot.device.IotHubStatusCode;
-import com.microsoft.azure.sdk.iot.device.Message;
-import com.microsoft.azure.sdk.iot.device.transport.IotHubConnectionStatus;
 import com.sensoro.cloud.SensoroManager;
 import com.sensoro.beacon.kit.*;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 public class MyApp extends Application implements BeaconManagerListener{
@@ -42,6 +25,9 @@ public class MyApp extends Application implements BeaconManagerListener{
     private String temperature;
     private String devID;
     private String beaconID;
+
+    Intent azure_intent;
+    Intent displayAct;
 
     @Override
     public void onCreate() {
@@ -121,20 +107,20 @@ public class MyApp extends Application implements BeaconManagerListener{
         //MainActivity.displayImage();
         Boolean RECOGNIZED=true;
         // first parameter is the context, second is the class of the activity to launch
-        Intent i = new Intent(this, DisplayImageActivity.class);
-        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        displayAct = new Intent(this, DisplayImageActivity.class);
+        displayAct.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
         beaconID = beacon.getSerialNumber();
         // put "extras" into the bundle for access in the second activity
         if(beacon.getSerialNumber().equals("0117C59B4EC7") ){
             Log.d("asd", "BEACON PRO");
-            i.putExtra("map_id", "general_map");
+            displayAct.putExtra("map_id", "general_map");
         }
         else if(beacon.getSerialNumber().equals("0117C582CAD7")){
-            i.putExtra("map_id", "area_one_map");
+            displayAct.putExtra("map_id", "area_one_map");
         }
         else if(beacon.getSerialNumber().equals("0117C5578442")){
-            i.putExtra("map_id", "area_two_map");
+            displayAct.putExtra("map_id", "area_two_map");
         }
         else{
             RECOGNIZED=false;
@@ -146,16 +132,16 @@ public class MyApp extends Application implements BeaconManagerListener{
             devID = Settings.Secure.getString(this.getContentResolver(),
                     Settings.Secure.ANDROID_ID);
 
-            i.putExtra("temp", temperature);
-            i.putExtra("devID", devID);
+            displayAct.putExtra("temp", temperature);
+            displayAct.putExtra("devID", devID);
 
             Log.d("asd", "Starting map activity");
-            startActivity(i);
+            startActivity(displayAct);
 
             /*
             Send to Azure
              */
-            Intent azure_intent = new Intent();
+            azure_intent = new Intent();
             azure_intent.setClass(this, AzureService.class);
 
             azure_intent.putExtra("temp", temperature);
@@ -169,19 +155,30 @@ public class MyApp extends Application implements BeaconManagerListener{
 
     @Override
     public void onGoneBeacon(Beacon beacon) {
-        Log.v("BLUE-OUT","OUT"+ beacon.getSerialNumber());
+        Log.d("BLUE-OUT","OUT"+ beacon.getSerialNumber());
+        stopService(azure_intent);
+        if(displayAct != null){
+            /*
+            displayAct.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            //displayAct.putExtra("exit", "EXIT");
+            startActivity(displayAct);
+            */
+            Intent finishDispAct = new Intent("FinishDisplayImage");
+            sendBroadcast(finishDispAct);
+        }
     }
 
     @Override
     public void onUpdateBeacon(ArrayList<Beacon> arrayList) {
         for(Beacon b: arrayList) {
-            Log.v("BLUE-UPDATE", "UPDATE " + b.getSerialNumber() + "----"+ b);
+            Log.d("BLUE-UPDATE", "UPDATE " + b.getSerialNumber() + "----"+ b);
         }
     }
 
+    /*
     private void testAzureSevice(){
-	Log.v("AZURE","testing Azure Service");        
-	Intent azure_intent = new Intent();
+	    Log.d("AZURE","testing Azure Service");
+	    Intent azure_intent = new Intent();
         azure_intent.setClass(this, AzureService.class);
 
         azure_intent.putExtra("temp", "123");
@@ -191,5 +188,7 @@ public class MyApp extends Application implements BeaconManagerListener{
         Log.d("asd", "Starting azure service");
         startService(azure_intent);
     }
+    */
+
 }
 
