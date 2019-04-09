@@ -134,13 +134,15 @@ public class MyApp extends Application implements BeaconManagerListener{
 
             displayAct.putExtra("temp", temperature);
             displayAct.putExtra("devID", devID);
+            displayAct.putExtra("beaconID", beaconID);
 
             Log.d("asd", "Starting map activity");
             startActivity(displayAct);
 
             /*
             Send to Azure
-             */
+
+
             azure_intent = new Intent();
             azure_intent.setClass(this, AzureService.class);
 
@@ -150,6 +152,7 @@ public class MyApp extends Application implements BeaconManagerListener{
 
             Log.d("asd", "Starting azure service");
             startService(azure_intent);
+            */
         }
     }
 

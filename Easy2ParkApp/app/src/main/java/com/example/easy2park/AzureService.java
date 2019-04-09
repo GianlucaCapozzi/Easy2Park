@@ -71,23 +71,6 @@ public class AzureService extends Service {
     }
 
     @Override
-    public void onDestroy() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    sendThread.interrupt();
-                    client.closeNow();
-                    Log.d("AzureServ","Shutting down...");
-                } catch (Exception e) {
-                    lastException = "Exception while closing IoTHub connection: " + e;
-                    handler.post(exceptionRunnable);
-                }
-            }
-        }).start();
-    }
-
-    @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
         Log.d("AzureServ", "In onStartCommand");
@@ -98,6 +81,11 @@ public class AzureService extends Service {
 
         start();
         return START_STICKY;
+    }
+
+    @Override
+    public void onDestroy() {
+        stop();
     }
 
     public void start(){
@@ -119,6 +107,22 @@ public class AzureService extends Service {
             }
         });
         sendThread.start();
+    }
+
+    private void stop() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    sendThread.interrupt();
+                    client.closeNow();
+                    System.out.println("Shutting down...");
+                } catch (Exception e) {
+                    lastException = "Exception while closing IoTHub connection: " + e;
+                    handler.post(exceptionRunnable);
+                }
+            }
+        }).start();
     }
 
     private void sendMessages(){
@@ -247,10 +251,12 @@ public class AzureService extends Service {
     final Runnable exceptionRunnable = new Runnable() {
         @Override
         public void run() {
+            /*
             AlertDialog.Builder builder = new AlertDialog.Builder(AzureService.this);
             builder.setMessage(lastException);
             builder.show();
             System.out.println("EXCEPTION RUNNABLE");
+            */
         }
     };
 
