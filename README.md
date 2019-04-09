@@ -28,11 +28,14 @@ Now you can
 
 
 ## Credits:
- Giuseppe Capaldi: [<img src="https://raw.githubusercontent.com/not-a-genius/Easy2Park/master/our_doc/readme_images/gitIcon.png" height="42" width="42" >](https://github.com/not-a-genius)
-					[<img src="https://raw.githubusercontent.com/not-a-genius/Easy2Park/master/our_doc/readme_images/inIcon.png" height="42" width="42" >](https://www.linkedin.com/in/giuseppe-capaldi-56688a171/)
+ Giuseppe Capaldi [<img src="https://raw.githubusercontent.com/not-a-genius/Easy2Park/master/our_doc/readme_images/gitIcon.png" height="20" width="20" >](https://github.com/not-a-genius)
+					[<img src="https://raw.githubusercontent.com/not-a-genius/Easy2Park/master/our_doc/readme_images/inIcon.png" height="20" width="20" >](https://www.linkedin.com/in/giuseppe-capaldi-56688a171/)
  <br/>
- Gianluca Capozzi: https://github.com/GianlucaCapozzi <br/>
- Daniele Davoli: https://github.com/danieledavoli <br/>
+ Gianluca Capozzi [<img src="https://raw.githubusercontent.com/not-a-genius/Easy2Park/master/our_doc/readme_images/gitIcon.png" height="20" width="20" >](https://github.com/GianlucaCapozzi)
+					[<img src="https://raw.githubusercontent.com/not-a-genius/Easy2Park/master/our_doc/readme_images/inIcon.png" height="20" width="20" >](https://www.linkedin.com/in/gianluca-capozzi-b9a75a16b/)
+  <br/>
+ Daniele Davoli [<img src="https://raw.githubusercontent.com/not-a-genius/Easy2Park/master/our_doc/readme_images/gitIcon.png" height="20" width="20" >](https://github.com/danieledavoli)
+					[<img src="https://raw.githubusercontent.com/not-a-genius/Easy2Park/master/our_doc/readme_images/inIcon.png" height="20" width="20" >](https://www.linkedin.com/in/danieledavoli/)
+  <br/>
 ## License:
- Finally, include a section for the license of your project. For more information on choosing a license, check out GitHub’s licensing guide!
-
+ Code is under Apache License 2.0.
