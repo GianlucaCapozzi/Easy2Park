@@ -1,6 +1,6 @@
 # Easy2Park
 
-## Description:
+# Description:
 This is an Android app DEMO project based on Sensoro™ Beacons (https://www.sensoro.com) and Azure Iot Hub (https://azure.microsoft.com/en-us/services/iot-hub/). The idea is to make it easier to find free parking lots. This is done through bluetooth connectivity to Sensoro beacons and Azure cloud computing.     
 ![Schema](https://github.com/GianlucaCapozzi/Easy2Park/blob/master/our_doc/readme_images/drawIO.jpg?raw=true)
 
