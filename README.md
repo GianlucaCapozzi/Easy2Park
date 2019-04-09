@@ -28,7 +28,9 @@ Now you can
 
 
 ## Credits:
- Giuseppe Capaldi: https://github.com/not-a-genius <br/>
+ Giuseppe Capaldi: [[[https://github.com/GianlucaCapozzi/Easy2Park/blob/master/our_doc/readme_images/gitIcon.png|width=30px]]](https://github.com/not-a-genius)
+					[[[https://github.com/GianlucaCapozzi/Easy2Park/blob/master/our_doc/readme_images/inIcon.png|width=30px]]](https://www.linkedin.com/in/giuseppe-capaldi-56688a171/)
+ <br/>
  Gianluca Capozzi: https://github.com/GianlucaCapozzi <br/>
  Daniele Davoli: https://github.com/danieledavoli <br/>
 ## License:
