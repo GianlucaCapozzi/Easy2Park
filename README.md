@@ -28,8 +28,8 @@ Now you can
 
 
 ## Credits:
- Giuseppe Capaldi: [[[https://github.com/GianlucaCapozzi/Easy2Park/blob/master/our_doc/readme_images/gitIcon.png|width=30px]]](https://github.com/not-a-genius)
-					[[[https://github.com/GianlucaCapozzi/Easy2Park/blob/master/our_doc/readme_images/inIcon.png|width=30px]]](https://www.linkedin.com/in/giuseppe-capaldi-56688a171/)
+ Giuseppe Capaldi: [<img src="https://raw.githubusercontent.com/not-a-genius/Easy2Park/master/our_doc/readme_images/gitIcon.png" height="42" width="42" >](https://github.com/not-a-genius)
+					[<img src="https://raw.githubusercontent.com/not-a-genius/Easy2Park/master/our_doc/readme_images/inIcon.png" height="42" width="42" >](https://www.linkedin.com/in/giuseppe-capaldi-56688a171/)
  <br/>
  Gianluca Capozzi: https://github.com/GianlucaCapozzi <br/>
  Daniele Davoli: https://github.com/danieledavoli <br/>
