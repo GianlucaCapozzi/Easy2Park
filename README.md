@@ -2,6 +2,7 @@
 
 ## Description:
 This is an Android app DEMO project based on Sensoro™ Beacons (https://www.sensoro.com) and Azure Iot Hub (https://azure.microsoft.com/en-us/services/iot-hub/). The idea is to make it easier to find free parking lots. This is done through bluetooth connectivity to Sensoro beacons and Azure cloud computing.     
+<br/><br/>
 ![Schema](https://github.com/GianlucaCapozzi/Easy2Park/blob/master/our_doc/readme_images/drawIO.jpg?raw=true)
 
 ## Installation:
@@ -28,14 +29,14 @@ Now you can
 
 
 ## Credits:
- Giuseppe Capaldi [<img src="https://raw.githubusercontent.com/not-a-genius/Easy2Park/master/our_doc/readme_images/gitIcon.png" height="20" width="20" >](https://github.com/not-a-genius)
-					[<img src="https://raw.githubusercontent.com/not-a-genius/Easy2Park/master/our_doc/readme_images/inIcon.png" height="20" width="20" >](https://www.linkedin.com/in/giuseppe-capaldi-56688a171/)
+ Giuseppe Capaldi [<img src="https://raw.githubusercontent.com/GianlucaCapozzi/Easy2Park/master/our_doc/readme_images/gitIcon.png" height="20" width="20" >](https://github.com/not-a-genius)
+					[<img src="https://raw.githubusercontent.com/GianlucaCapozzi/Easy2Park/master/our_doc/readme_images/inIcon.png" height="20" width="20" >](https://www.linkedin.com/in/giuseppe-capaldi-56688a171/)
  <br/>
- Gianluca Capozzi [<img src="https://raw.githubusercontent.com/not-a-genius/Easy2Park/master/our_doc/readme_images/gitIcon.png" height="20" width="20" >](https://github.com/GianlucaCapozzi)
-					[<img src="https://raw.githubusercontent.com/not-a-genius/Easy2Park/master/our_doc/readme_images/inIcon.png" height="20" width="20" >](https://www.linkedin.com/in/gianluca-capozzi-b9a75a16b/)
+ Gianluca Capozzi [<img src="https://raw.githubusercontent.com/GianlucaCapozzi/Easy2Park/master/our_doc/readme_images/gitIcon.png" height="20" width="20" >](https://github.com/GianlucaCapozzi)
+					[<img src="https://raw.githubusercontent.com/GianlucaCapozzi/Easy2Park/master/our_doc/readme_images/inIcon.png" height="20" width="20" >](https://www.linkedin.com/in/gianluca-capozzi-b9a75a16b/)
   <br/>
- Daniele Davoli [<img src="https://raw.githubusercontent.com/not-a-genius/Easy2Park/master/our_doc/readme_images/gitIcon.png" height="20" width="20" >](https://github.com/danieledavoli)
-					[<img src="https://raw.githubusercontent.com/not-a-genius/Easy2Park/master/our_doc/readme_images/inIcon.png" height="20" width="20" >](https://www.linkedin.com/in/danieledavoli/)
+ Daniele Davoli [<img src="https://raw.githubusercontent.com/GianlucaCapozzi/Easy2Park/master/our_doc/readme_images/gitIcon.png" height="20" width="20" >](https://github.com/danieledavoli)
+					[<img src="https://raw.githubusercontent.com/GianlucaCapozzi/Easy2Park/master/our_doc/readme_images/inIcon.png" height="20" width="20" >](https://www.linkedin.com/in/danieledavoli/)
   <br/>
 ## License:
  Code is under Apache License 2.0.
