@@ -14,10 +14,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import mehdi.sakout.fancybuttons.FancyButton;
+
 public class DisplayImageActivity extends AppCompatActivity {
 
-    Button btnStart;
-    Button btnStop;
+    FancyButton btnStart;
+    FancyButton btnStop;
 
     Intent azure_intent;
     String temperature;

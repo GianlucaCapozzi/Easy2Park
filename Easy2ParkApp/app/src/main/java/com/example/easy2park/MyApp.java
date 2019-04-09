@@ -159,7 +159,7 @@ public class MyApp extends Application implements BeaconManagerListener{
     @Override
     public void onGoneBeacon(Beacon beacon) {
         Log.d("BLUE-OUT","OUT"+ beacon.getSerialNumber());
-        stopService(azure_intent);
+        //stopService(azure_intent);
         if(displayAct != null){
             /*
             displayAct.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
