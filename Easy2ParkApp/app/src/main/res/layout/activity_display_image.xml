@@ -33,7 +33,9 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Temperature:" />
+                android:text="Temperature:"
+                android:textColor="@android:color/secondary_text_dark"
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/displayTempValue"
@@ -43,7 +45,11 @@
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:singleLine="false"
-                android:text="Name" />
+                android:text="No Temperature available"
+                android:textColor="?attr/colorPrimaryDark"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:typeface="normal" />
 
             <ImageView
                 android:id="@+id/map_img"
@@ -68,9 +74,13 @@
         style="@style/Widget.AppCompat.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="545dp"
+        android:layout_marginEnd="8dp"
         android:text="@string/send"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="545dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/scrollView2" />
 
 
 </android.support.constraint.ConstraintLayout>
