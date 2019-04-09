@@ -36,6 +36,8 @@ import com.sensoro.cloud.SensoroManager;
 import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import com.microsoft.windowsazure.mobileservices.*;
+
 public class MainActivity extends AppCompatActivity {
 
     MyApp app;

@@ -10,18 +10,28 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 public class DisplayImageActivity extends AppCompatActivity {
 
-
+    Button btnStart;
+    Button btnStop;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
+        btnStart = findViewById(R.id.sendBtn);
+        btnStop = findViewById(R.id.stopBtn);
+
+        btnStop.setEnabled(false);
+
         registerReceiver(mMessageReceiver, new IntentFilter("FinishDisplayImage"));
         setContentView(R.layout.activity_display_image);
+
         Log.d("asd", "In dispActiv");
         String map_id = getIntent().getStringExtra("map_id");
         if (map_id!= null ) Log.d("map_id_received",map_id);
@@ -66,4 +76,13 @@ public class DisplayImageActivity extends AppCompatActivity {
         super.onDestroy();
         unregisterReceiver(mMessageReceiver);
     }
+
+    public void btnStartOnClick(View v){
+
+    }
+
+    public void btnStopOnClick(View v){
+
+    }
+
 }

@@ -56,6 +56,8 @@ dependencies {
     implementation ('com.microsoft.azure.sdk.iot:iot-device-client:1.17.0'){
         exclude module: 'azure-storage'
     }
+    implementation 'com.microsoft.azure:azure-mobile-android:3.4.0'
+
     implementation ('com.microsoft.azure.android:azure-storage-android:2.0.0@aar')
     implementation ('org.apache.commons:commons-lang3:3.6')
 
