@@ -32,9 +32,9 @@ public class MyApp extends Application implements BeaconManagerListener{
     @Override
     public void onCreate() {
         super.onCreate();
-        //initSensoro();
-        Intent myServ = new Intent(this, MyService.class);
-        startService(myServ);
+        initSensoro();
+        //Intent myServ = new Intent(this, MyService.class);
+        //startService(myServ);
     }
 
     public void initSensoro() {
@@ -56,7 +56,9 @@ public class MyApp extends Application implements BeaconManagerListener{
         BluetoothManager bluetoothManager = (BluetoothManager) getSystemService(BLUETOOTH_SERVICE);
         BluetoothAdapter bluetoothAdapter = bluetoothManager.getAdapter();
         boolean status = bluetoothAdapter.isEnabled();
+        Log.d("asd", "Status: " + status);
         if (!status) {
+
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setNegativeButton(R.string.yes, new DialogInterface.OnClickListener() {
 
