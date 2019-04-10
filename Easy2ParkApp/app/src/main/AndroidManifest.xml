@@ -36,7 +36,6 @@
                 android:value=".MainActivity" />
         </activity>
 
-        <service android:name=".MyService" />
         <service android:name=".AzureService" />
         <service android:name="com.sensoro.beacon.kit.BeaconService" >
         </service>

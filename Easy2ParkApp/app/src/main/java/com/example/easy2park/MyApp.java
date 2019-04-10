@@ -4,11 +4,9 @@ import android.app.AlertDialog;
 import android.app.Application;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothManager;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
-import android.os.Handler;
 import android.provider.Settings;
 import android.util.Log;
 
@@ -26,15 +24,12 @@ public class MyApp extends Application implements BeaconManagerListener{
     private String devID;
     private String beaconID;
 
-    Intent azure_intent;
     Intent displayAct;
 
     @Override
     public void onCreate() {
         super.onCreate();
         initSensoro();
-        //Intent myServ = new Intent(this, MyService.class);
-        //startService(myServ);
     }
 
     public void initSensoro() {
@@ -142,20 +137,6 @@ public class MyApp extends Application implements BeaconManagerListener{
             Log.d("asd", "Starting map activity");
             startActivity(displayAct);
 
-            /*
-            Send to Azure
-
-
-            azure_intent = new Intent();
-            azure_intent.setClass(this, AzureService.class);
-
-            azure_intent.putExtra("temp", temperature);
-            azure_intent.putExtra("devID", devID);
-            azure_intent.putExtra("beaconID", beaconID);
-
-            Log.d("asd", "Starting azure service");
-            startService(azure_intent);
-            */
         }
     }
 
@@ -164,11 +145,6 @@ public class MyApp extends Application implements BeaconManagerListener{
         Log.d("BLUE-OUT","OUT"+ beacon.getSerialNumber());
         //stopService(azure_intent);
         if(displayAct != null){
-            /*
-            displayAct.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            //displayAct.putExtra("exit", "EXIT");
-            startActivity(displayAct);
-            */
             Intent finishDispAct = new Intent("FinishDisplayImage");
             sendBroadcast(finishDispAct);
         }
@@ -180,21 +156,6 @@ public class MyApp extends Application implements BeaconManagerListener{
             Log.d("BLUE-UPDATE", "UPDATE " + b.getSerialNumber() + "----"+ b);
         }
     }
-
-    /*
-    private void testAzureSevice(){
-	    Log.d("AZURE","testing Azure Service");
-	    Intent azure_intent = new Intent();
-        azure_intent.setClass(this, AzureService.class);
-
-        azure_intent.putExtra("temp", "123");
-        azure_intent.putExtra("devID", "testID");
-
-
-        Log.d("asd", "Starting azure service");
-        startService(azure_intent);
-    }
-    */
 
 }
 

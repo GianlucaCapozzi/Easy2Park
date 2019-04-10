@@ -251,12 +251,10 @@ public class AzureService extends Service {
     final Runnable exceptionRunnable = new Runnable() {
         @Override
         public void run() {
-            /*
             AlertDialog.Builder builder = new AlertDialog.Builder(AzureService.this);
             builder.setMessage(lastException);
             builder.show();
             System.out.println("EXCEPTION RUNNABLE");
-            */
         }
     };
 
