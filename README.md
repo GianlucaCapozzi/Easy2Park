@@ -78,11 +78,11 @@ If you completed the installation part the app will open on your device. <br/>
 1. Turn on bluetooth and gps. <br/>
 2. Go into the range of your sensoro beacons. <br/>
 This will be displayed on your screen: <br/>
-[<img src="https://raw.githubusercontent.com/GianlucaCapozzi/Easy2Park/master/our_doc/readme_images/mainImg.jpg" height="500" width="500">  ]
+<img src="https://raw.githubusercontent.com/GianlucaCapozzi/Easy2Park/master/our_doc/readme_images/mainImg.jpg" height="500" width="500">  
 3. Click on Park here to start sending data to Azure <br/>
-[<img src="https://raw.githubusercontent.com/GianlucaCapozzi/Easy2Park/master/our_doc/readme_images/mainImg2.jpg" height="500" width="500">]
+<img src="https://raw.githubusercontent.com/GianlucaCapozzi/Easy2Park/master/our_doc/readme_images/mainImg2.jpg" height="500" width="500">
 4. Click on Leave the parking to stop sending data to Azure <br/>
-[<img src="https://raw.githubusercontent.com/GianlucaCapozzi/Easy2Park/master/our_doc/readme_images/mainImg3.jpg" height="500" width="500">]
+<img src="https://raw.githubusercontent.com/GianlucaCapozzi/Easy2Park/master/our_doc/readme_images/mainImg3.jpg" height="500" width="500">
 
 ## TODO
 Features to be implemented:
