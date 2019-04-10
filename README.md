@@ -78,24 +78,24 @@ If you completed the installation part the app will open on your device. <br/>
 1. Turn on bluetooth and gps. <br/>
 2. Go into the range of your sensoro beacons. <br/>
 This will be displayed on your screen: <br/>
-[MainActivity] [<img src="https://raw.githubusercontent.com/GianlucaCapozzi/Easy2Park/master/our_doc/readme_images/mainImg.jpg">]
+[<img src="https://raw.githubusercontent.com/GianlucaCapozzi/Easy2Park/master/our_doc/readme_images/mainImg.jpg" height="100" width="100">  ]
 3. Click on Park here to start sending data to Azure <br/>
-[DisplayImageActivity] [<img src="https://raw.githubusercontent.com/GianlucaCapozzi/Easy2Park/master/our_doc/readme_images/mainImg2.jpg">]
+[<img src="https://raw.githubusercontent.com/GianlucaCapozzi/Easy2Park/master/our_doc/readme_images/mainImg2.jpg" height="20" width="20">]
 4. Click on Leave the parking to stop sending data to Azure <br/>
-[DisplayImageActivity] [<img src="https://raw.githubusercontent.com/GianlucaCapozzi/Easy2Park/master/our_doc/readme_images/mainImg3.jpg">]
+[<img src="https://raw.githubusercontent.com/GianlucaCapozzi/Easy2Park/master/our_doc/readme_images/mainImg3.jpg" height="20" width="20">]
 
 ## TODO
 Features to be implemented:
 - Background proper functioning
 
 ## Credits:
-- Giuseppe Capaldi [<img src="https://raw.githubusercontent.com/GianlucaCapozzi/Easy2Park/master/our_doc/readme_images/gitIcon.png" height="20" width="20" >](https://github.com/not-a-genius)
-					[<img src="https://raw.githubusercontent.com/GianlucaCapozzi/Easy2Park/master/our_doc/readme_images/inIcon.png" height="20" width="20" >](https://www.linkedin.com/in/giuseppe-capaldi-56688a171/)
+- Giuseppe Capaldi [<img src="https://raw.githubusercontent.com/GianlucaCapozzi/Easy2Park/master/our_doc/readme_images/gitIcon.png" height="500" width="500" >](https://github.com/not-a-genius)
+					[<img src="https://raw.githubusercontent.com/GianlucaCapozzi/Easy2Park/master/our_doc/readme_images/inIcon.png" height="500" width="500" >](https://www.linkedin.com/in/giuseppe-capaldi-56688a171/)
 
-- Gianluca Capozzi [<img src="https://raw.githubusercontent.com/GianlucaCapozzi/Easy2Park/master/our_doc/readme_images/gitIcon.png" height="20" width="20" >](https://github.com/GianlucaCapozzi)
-					[<img src="https://raw.githubusercontent.com/GianlucaCapozzi/Easy2Park/master/our_doc/readme_images/inIcon.png" height="20" width="20" >](https://www.linkedin.com/in/gianluca-capozzi-b9a75a16b/)
+- Gianluca Capozzi [<img src="https://raw.githubusercontent.com/GianlucaCapozzi/Easy2Park/master/our_doc/readme_images/gitIcon.png" height="500" width="500" >](https://github.com/GianlucaCapozzi)
+					[<img src="https://raw.githubusercontent.com/GianlucaCapozzi/Easy2Park/master/our_doc/readme_images/inIcon.png" height="500" width="500" >](https://www.linkedin.com/in/gianluca-capozzi-b9a75a16b/)
 
-- Daniele Davoli [<img src="https://raw.githubusercontent.com/GianlucaCapozzi/Easy2Park/master/our_doc/readme_images/gitIcon.png" height="20" width="20" >](https://github.com/danieledavoli)
-					[<img src="https://raw.githubusercontent.com/GianlucaCapozzi/Easy2Park/master/our_doc/readme_images/inIcon.png" height="20" width="20" >](https://www.linkedin.com/in/danieledavoli/)
+- Daniele Davoli [<img src="https://raw.githubusercontent.com/GianlucaCapozzi/Easy2Park/master/our_doc/readme_images/gitIcon.png" height="500" width="500" >](https://github.com/danieledavoli)
+					[<img src="https://raw.githubusercontent.com/GianlucaCapozzi/Easy2Park/master/our_doc/readme_images/inIcon.png" height="500" width="500" >](https://www.linkedin.com/in/danieledavoli/)
 ## License:
  Code is under Apache License 2.0.
