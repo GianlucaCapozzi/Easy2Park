@@ -38,6 +38,9 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.microsoft.windowsazure.mobileservices.*;
 
+import pub.devrel.easypermissions.AfterPermissionGranted;
+import pub.devrel.easypermissions.EasyPermissions;
+
 public class MainActivity extends AppCompatActivity {
 
     MyApp app;
@@ -45,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
     BluetoothManager bluetoothManager;
     BluetoothAdapter bluetoothAdapter;
     private BluetoothBroadcastReceiver bluetoothBroadcastReceiver;
+
+    private final int REQUEST_LOCATION_PERMISSION = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,8 +68,12 @@ public class MainActivity extends AppCompatActivity {
 
         app = (MyApp) getApplication();
 
+
         bluetoothBroadcastReceiver = new BluetoothBroadcastReceiver();
         registerReceiver(bluetoothBroadcastReceiver,new IntentFilter(Constant.BLE_STATE_CHANGED_ACTION));
+
+        /* GEOLOCATION PERMISSION */
+        requestLocationPermission();
 
         if(isBlueEnabled()){
             Log.d("asd", "Created app");
@@ -98,6 +107,27 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return status;
+    }
+
+    /* GEOLOCATION PERMISSION */
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        // Forward results to EasyPermissions
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
+
+    @AfterPermissionGranted(REQUEST_LOCATION_PERMISSION)
+    public void requestLocationPermission() {
+        String[] perms = {Manifest.permission.ACCESS_FINE_LOCATION};
+        if(EasyPermissions.hasPermissions(this, perms)) {
+            Toast.makeText(this, "Permission already granted", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            EasyPermissions.requestPermissions(this, "Please grant the location permission", REQUEST_LOCATION_PERMISSION, perms);
+        }
     }
 
     class BluetoothBroadcastReceiver extends BroadcastReceiver {
