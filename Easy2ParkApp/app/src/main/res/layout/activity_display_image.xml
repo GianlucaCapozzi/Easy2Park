@@ -7,120 +7,93 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
+    android:background="@drawable/bg1"
+
     tools:context=".DisplayImageActivity">
 
 
-    <ScrollView
-        android:id="@+id/scrollView2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorPrimaryDark"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="0dp">
 
-        <LinearLayout
-            android:id="@+id/scrollView1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/bg1"
-            android:fillViewport="true"
-            android:orientation="vertical">
+
 
 
             <TextView
                 android:id="@+id/displayStateText"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName" />
-
-
-            <TextView
-                android:id="@+id/editText6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="57dp"
+                android:layout_marginTop="1dp"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Temperature:"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="24sp" />
+                app:layout_constraintTop_toBottomOf="@+id/map_img"
+                tools:layout_editor_absoluteX="0dp" />
+
 
             <TextView
                 android:id="@+id/displayTempValue"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="56dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="8dp"
                 android:baselineAligned="false"
                 android:elevation="1dp"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:singleLine="false"
-                android:text="No Temperature available"
+                android:text="No Temperature  available"
                 android:textColor="@android:color/holo_green_dark"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                android:typeface="normal" />
+                android:typeface="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/editText6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Temperature:"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/map_img"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="302dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="112dp"
+                android:layout_marginTop="104dp"
                 android:layout_marginEnd="8dp"
                 android:background="@color/colorPrimaryDark"
                 android:elevation="1dp"
                 android:scaleType="centerCrop"
                 android:src="@color/accent_material_light"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.476"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-        </LinearLayout>
-
-    </ScrollView>
-
-    <Button
+    <mehdi.sakout.fancybuttons.FancyButton
         android:id="@+id/sendBtn"
-        style="@style/Widget.AppCompat.Button"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="524dp"
-        android:layout_marginEnd="8dp"
-        android:elevation="1dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="56dp"
         android:onClick="btnStartOnClick"
-        android:text="@string/start"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/scrollView2" />
-
-    <Button
-        android:id="@+id/stopBtn2"
-        style="@style/Widget.AppCompat.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:onClick="btnStopOnClick"
-        android:text="@string/stop"
-        android:elevation="1dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sendBtn" />
-
-    <mehdi.sakout.fancybuttons.FancyButton
-        android:id="@+id/stopBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingBottom="10dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingTop="10dp"
-        android:onClick="btnStopOnClick"
-        fancy:fb_text="@string/stop"
+        app:layout_constraintTop_toBottomOf="@+id/map_img"
         fancy:fb_borderColor="#FFFFFF"
         fancy:fb_borderWidth="1dp"
         fancy:fb_defaultColor="#7ab800"
@@ -128,11 +101,40 @@
         fancy:fb_fontIconResource="&#xf04b;"
         fancy:fb_iconPosition="left"
         fancy:fb_radius="30dp"
-        fancy:fb_textColor="#FFFFFF"
+        fancy:fb_text="@string/start"
+        fancy:fb_textColor="#FFFFFF" />
+
+
+    <mehdi.sakout.fancybuttons.FancyButton
+        android:id="@+id/stopBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="132dp"
+        android:onClick="btnStopOnClick"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="10dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stopBtn2"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/map_img"
+        fancy:fb_borderColor="#FFFFFF"
+        fancy:fb_borderWidth="1dp"
+        fancy:fb_defaultColor="@color/colorAccent"
+        fancy:fb_focusColor="#9bd823"
+        fancy:fb_fontIconResource="&#xf04b;"
+        fancy:fb_iconPosition="left"
+        fancy:fb_radius="30dp"
+        fancy:fb_text="@string/stop"
+        fancy:fb_textColor="#FFFFFF" />
+
+
+
+
+
+
+
 
 
 </android.support.constraint.ConstraintLayout>
