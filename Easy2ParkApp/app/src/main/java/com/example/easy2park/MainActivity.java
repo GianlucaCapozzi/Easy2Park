@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
         app = (MyApp) getApplication();
 
+        /*
         bluetoothBroadcastReceiver = new BluetoothBroadcastReceiver();
         registerReceiver(bluetoothBroadcastReceiver,new IntentFilter(Constant.BLE_STATE_CHANGED_ACTION));
 
@@ -70,6 +71,8 @@ public class MainActivity extends AppCompatActivity {
             Log.d("asd", "Created app");
             app.onCreate();
         }
+        */
+        app.onCreate();
 
     }
 

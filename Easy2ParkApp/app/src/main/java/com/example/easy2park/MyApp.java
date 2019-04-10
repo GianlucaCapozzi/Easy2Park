@@ -32,11 +32,12 @@ public class MyApp extends Application implements BeaconManagerListener{
     @Override
     public void onCreate() {
         super.onCreate();
-        initSensoro();
-        //testAzureSevice();
+        //initSensoro();
+        Intent myServ = new Intent(this, MyService.class);
+        startService(myServ);
     }
 
-    private void initSensoro() {
+    public void initSensoro() {
         sensoroManager = SensoroManager.getInstance(getApplicationContext());
         sensoroManager.addBroadcastKey("7b4b5ff594fdaf8f9fc7f2b494e400016f461205");
         sensoroManager.setBeaconManagerListener(this);

@@ -35,7 +35,7 @@ public class MyService extends Service{
         bluetoothBroadcastReceiver = new BluetoothBroadcastReceiver();
         registerReceiver(bluetoothBroadcastReceiver, new IntentFilter(Constant.BLE_STATE_CHANGED_ACTION));
         if (application.isBlueEnabled()){
-            application.startSensoroSDK();
+            application.initSensoro();
         }
     }
 
