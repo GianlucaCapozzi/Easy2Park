@@ -15,6 +15,10 @@ import com.sensoro.beacon.kit.*;
 
 import java.util.ArrayList;
 
+import static com.example.easy2park.Constant.SENSORO_DEVICE1;
+import static com.example.easy2park.Constant.SENSORO_DEVICE2;
+import static com.example.easy2park.Constant.SENSORO_DEVICE3;
+
 public class MyApp extends Application implements BeaconManagerListener{
 
     private static final String TAG = MyApp.class.getSimpleName();
@@ -110,14 +114,14 @@ public class MyApp extends Application implements BeaconManagerListener{
 
         beaconID = beacon.getSerialNumber();
         // put "extras" into the bundle for access in the second activity
-        if(beacon.getSerialNumber().equals("0117C59B4EC7") ){
+        if(beacon.getSerialNumber().equals(SENSORO_DEVICE1) ){
             Log.d("asd", "BEACON PRO");
             displayAct.putExtra("map_id", "general_map");
         }
-        else if(beacon.getSerialNumber().equals("0117C582CAD7")){
+        else if(beacon.getSerialNumber().equals(SENSORO_DEVICE2)){
             displayAct.putExtra("map_id", "area_one_map");
         }
-        else if(beacon.getSerialNumber().equals("0117C5578442")){
+        else if(beacon.getSerialNumber().equals(SENSORO_DEVICE3)){
             displayAct.putExtra("map_id", "area_two_map");
         }
         else{
